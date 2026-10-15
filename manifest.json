@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "FireREST",
+  "version": "1.1",
+  "description": "In-page overlay: capture Firestore WebChannel traffic, convert to REST, edit & replay with swappable tokens for access-control testing.",
+  "browser_specific_settings": {
+    "gecko": { "id": "firerest@local.test" }
+  },
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["overlay.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "browser_action": {
+    "default_title": "FireREST — toggle overlay"
+  }
+}
